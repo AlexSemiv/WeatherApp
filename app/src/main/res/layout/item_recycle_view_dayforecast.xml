@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="threeHours"
+            type="com.example.simpleweatherapp.apiModel.ThreeHoursForecast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200">
+
+        <TextView
+            android:id="@+id/dateDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@{String.valueOf(threeHours.shortDtTxt)}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="18:00:00" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateDay">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{threeHours.weather.get(0).iconId}"
+                tools:src="@drawable/sunny" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="@{String.valueOf(threeHours.weather.get(0).description)}"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:text="Very sunny" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Temperature: `+String.valueOf(threeHours.main.temp)}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="Temperature: 245 K"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Feels like: `+String.valueOf(threeHours.main.feelsLike)}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="Feels like: 243 K"
+                android:layout_gravity="right"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Max temperature: `+String.valueOf(threeHours.main.tempMax)}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Max temperature: 250 K"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Min temperature: `+String.valueOf(threeHours.main.tempMin)}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Min temperature: 230 K"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Temperature kf: `+String.valueOf(threeHours.main.tempKf)}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Temperature kf: 230 K"
+                android:layout_gravity="right"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Humidity: `+String.valueOf(threeHours.main.humidity)+`%`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Humidity: 89%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="@{`Pressure: `+String.valueOf(threeHours.main.pressure)+` Pa`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Pressure: 1020 Pa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="@{`Visibility: `+String.valueOf(threeHours.visibility)+` m`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Visibility: 10000 m" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="@{`Clouds: `+String.valueOf(threeHours.clouds.all)+`%`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Clouds: 10%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="@{`Wind speed: `+String.valueOf(threeHours.wind.speed)+` m/s`}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Wind speed: 10 m/s" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

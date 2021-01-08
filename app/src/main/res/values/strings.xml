@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="metric">metric</string>
+    <string name="imperial">imperial</string>
+    <string name="ru_lang">ru</string>
+    <string name="en_lang">en</string>
+</resources>

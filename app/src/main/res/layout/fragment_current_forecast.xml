@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="current"
+            type="com.example.simpleweatherapp.apiModel.ThreeHoursForecast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/quantum_cyan600">
+
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{String.valueOf(current.city.name)}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/country"
+            app:layout_constraintStart_toEndOf="@+id/country"
+            tools:text="Orenburg" />
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="35dp"
+            android:text="@{String.valueOf(current.city.country)}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="RU" />
+
+        <TextView
+            android:id="@+id/sunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:text="@{String.valueOf(current.city.sunrise)}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            tools:text="08:01" />
+
+        <TextView
+            android:id="@+id/sunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@{String.valueOf(current.city.sunset)}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="21:12" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(current.shortDtTxt)}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sunrise"
+            tools:text="18:00:00" />
+
+        <TextView
+            android:id="@+id/visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:padding="5dp"
+            android:text="@{`Visibility: `+String.valueOf(current.visibility)+` m`}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/humidity"
+            tools:text="Visibility : 10000m" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            app:layout_constraintStart_toEndOf="@+id/temp"
+            app:layout_constraintTop_toTopOf="@+id/temp"
+            app:srcCompat="@drawable/degree" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/temp"
+            app:layout_constraintStart_toStartOf="@+id/temp"
+            app:layout_constraintTop_toBottomOf="@+id/temp">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{current.weather.get(0).description}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="237dp"
+                tools:text="Sunny" />
+
+            <ImageView
+                android:id="@+id/iconItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/cloudy"
+                tools:layout_editor_absoluteX="230dp"
+                tools:layout_editor_absoluteY="237dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(current.main.temp)}"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="@+id/date"
+            app:layout_constraintStart_toStartOf="@+id/date"
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            tools:text="-12" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:padding="5dp"
+            android:text="@{`Humidity: `+String.valueOf(current.main.humidity)+`%`}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            tools:text="Humidity : 12%" />
+
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="5dp"
+            android:text="@{`Pressure: `+String.valueOf(current.main.pressure)+` Pa`}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/humidity"
+            tools:text="Pressure : 218 Pa" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/sunset"
+            app:layout_constraintTop_toTopOf="@+id/sunset"
+            app:srcCompat="@drawable/sunny" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

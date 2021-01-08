@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="oneDay"
+            type="com.example.simpleweatherapp.myModel.DayForecast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/teal_700">
+
+        <TextView
+            android:id="@+id/dateItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingTop="8dp"
+            android:paddingRight="5dp"
+            android:text="@{String.valueOf(oneDay.threeHoursList.get(0).longDtTxt)}"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="12.12.2020" />
+
+
+        <TextView
+            android:id="@+id/itemHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Humidity: `+String.valueOf(oneDay.threeHoursList.get(0).main.humidity)+`%`}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/itemPressure"
+            app:layout_constraintEnd_toEndOf="@+id/dateItem"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/dateItem"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            tools:text="Humidity: 13%" />
+
+        <TextView
+            android:id="@+id/itemPressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@{`Pressure: `+String.valueOf(oneDay.threeHoursList.get(0).main.pressure)+` Pa`}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemHumidity"
+            app:layout_constraintStart_toStartOf="@+id/itemHumidity"
+            tools:text="Pressure: 210 Pa" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/dateItem"
+            app:layout_constraintStart_toStartOf="@+id/dateItem"
+            app:layout_constraintTop_toBottomOf="@+id/dateItem">
+
+            <ImageView
+                android:id="@+id/iconItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@{oneDay.threeHoursList.get(0).weather.get(0).iconId}"
+                tools:src="@drawable/sunny" />
+
+            <TextView
+                android:id="@+id/tempItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="@{String.valueOf(oneDay.threeHoursList.get(0).main.temp)+` `}"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                tools:text="-12" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/degree" />
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
